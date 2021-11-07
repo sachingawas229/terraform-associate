@@ -4,8 +4,8 @@ resource "aws_instance" "my-ec2-vm" {
   //instance_type   = var.ec2_instance_type[1]
   instance_type = var.ec2_instance_type["micro"]
   key_name        = "terraform-key"
-  subnet_id       = var.subnet_id
-  security_groups = [var.sg_id]
+  //subnet_id       = var.subnet_id
+  //security_groups = [var.sg_id]
   user_data = file("${path.module}/apache-install.sh")
   /*user_data = <<-EOF
     #! /bin/bash

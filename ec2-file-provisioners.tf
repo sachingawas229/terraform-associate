@@ -33,19 +33,19 @@ resource "aws_instance" "my-ec2-vm" {
     ]
   }*/
 
-# local-exec provisioner (Creation-Time Provisioner - Triggered during Create Resource)
+  # local-exec provisioner (Creation-Time Provisioner - Triggered during Create Resource)
   provisioner "local-exec" {
-    command = "echo ${aws_instance.my-ec2-vm.private_ip} >> creation-time-private-ip.txt"
+    command     = "echo ${aws_instance.my-ec2-vm.private_ip} >> creation-time-private-ip.txt"
     working_dir = "local-exec-output-files/"
     #on_failure = continue
   }
 
   # local-exec provisioner - (Destroy-Time Provisioner - Triggered during Destroy Resource)
   provisioner "local-exec" {
-    when    = destroy
-    command = "echo Destroy-time provisioner Instanace Destroyed at `date` >> destroy-time.txt"
+    when        = destroy
+    command     = "echo Destroy-time provisioner Instanace Destroyed at `date` >> destroy-time.txt"
     working_dir = "local-exec-output-files/"
-  }  
+  }
 }
 
 

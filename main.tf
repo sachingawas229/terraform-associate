@@ -17,8 +17,8 @@ module "ec2" {
   count             = terraform.workspace == "default" ? 2 : var.enable_ec2
   source            = "./modules/ec2"
   ami_id            = var.ami_id
-  subnet_id         = module.vpc[0].subnet_id
-  sg_id             = module.security_groups[0].vpc_gp_id
+  subnet_id         = var.deploy_vpc == 1 ? module.vpc[0].subnet_id : null
+  sg_id             = var.enable_security_groups == 1 ? module.security_groups[0].vpc_gp_id : null
   ec2_instance_type = var.ec2_instance_type
   index             = count.index
   tags              = var.tags
