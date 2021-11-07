@@ -31,7 +31,7 @@ resource "aws_instance" "my-ec2-vm" {
       "sleep 120", # Will sleep for 120 seconds to ensure Apache webserver is provisioned using user_data
       "sudo cp /tmp/file-copy.html /var/www/html"
     ]
-  }*/
+  }
 
   # local-exec provisioner (Creation-Time Provisioner - Triggered during Create Resource)
   provisioner "local-exec" {
@@ -45,7 +45,7 @@ resource "aws_instance" "my-ec2-vm" {
     when        = destroy
     command     = "echo Destroy-time provisioner Instanace Destroyed at `date` >> destroy-time.txt"
     working_dir = "local-exec-output-files/"
-  }
+  }*/
 }
 
 
